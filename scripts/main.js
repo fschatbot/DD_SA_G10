@@ -40,13 +40,10 @@ document.querySelectorAll("nav li").forEach((elem) => {
 // Scroll to the last active screen instantly on boot. If none, then make it first screen
 setScreen(Number(localStorage.getItem("activeScreen")) || 0, { instant: true });
 
-// Changing the progress bar behind color on change
-// https://stackoverflow.com/questions/43771735/style-input-range-background-before-thumb
-document.querySelectorAll(".bar").forEach(function (el) {
-	el.oninput = function () {
-		var valPercent = (el.valueAsNumber - parseInt(el.min)) / (parseInt(el.max) - parseInt(el.min));
-		var style = "background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(" + valPercent + ", #475569), color-stop(" + valPercent + ", #64748b));";
-		el.setAttribute("style", style);
-	};
-	el.oninput();
+// Importing all the screen scripts
+let scripts = ["scripts/screen3.js"];
+scripts.forEach((script) => {
+	let scriptElem = document.createElement("script");
+	scriptElem.src = script;
+	document.body.appendChild(scriptElem);
 });
