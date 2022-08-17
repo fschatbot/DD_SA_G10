@@ -1,0 +1,16 @@
+@import "./screens/screen3.css";
+
+.screens {
+	@apply bg-slate-800 max-w-[100vw] overflow-x-hidden
+	flex flex-row
+	h-[calc(100vh-5rem)] md:h-screen;
+}
+
+.screen {
+	@apply h-full min-w-[100vw];
+
+	/* These lines are for debugging purposes */
+	/* @apply text-white text-3xl font-bold
+	flex justify-center items-center
+	border-4 border-red-500; */
+}

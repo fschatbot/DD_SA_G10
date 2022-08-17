@@ -1,0 +1,13 @@
+{
+	"devDependencies": {
+		"@tailwindcss/forms": "^0.5.2",
+		"postcss-import": "^14.1.0",
+		"tailwindcss": "^3.1.8",
+		"webpack-cli": "^4.10.0"
+	},
+	"scripts": {
+		"build": "npm run build:CSS",
+		"build:JS": "webpack-cli build --entry ./script.js -o ./ --mode production",
+		"build:CSS": "npx tailwindcss -i styles/style.css -o style.min.css -m"
+	}
+}

@@ -1,0 +1,59 @@
+.screen[screen="3"] {
+	@apply flex flex-col justify-center items-center gap-8
+	text-white font-bold text-2xl
+	md:pb-24; /* This is done to truely center the elements inside*/
+}
+
+.screen[screen="3"] .img div {
+	@apply w-64 h-56;
+	filter: url(#round); /* This is the filter that makes the image round */
+}
+
+.screen[screen="3"] .img div::before {
+	@apply content-[""] block
+	w-full h-full;
+	background: url("https://bennettfeely.com/clippy/pics/pittsburgh.jpg") center/cover;
+	clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.screen[screen="3"] .img {
+	@apply w-[17rem] h-60
+	flex justify-center items-center;
+	filter: url(#round); /* This is the filter that makes the image round */
+}
+
+.screen[screen="3"] .img::before {
+	@apply content-[""] absolute
+	w-full h-full
+	bg-gradient-to-br from-orange-500 to-rose-500;
+	box-shadow: inset 5px 5px 10px 0 rgba(255, 255, 255, 0.4);
+	clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+/* Audio bar css */
+.bar {
+	@apply w-[50rem] bg-slate-500 rounded-md h-2 appearance-none;
+}
+.audio-control .bar {
+	@apply w-[20rem] h-1;
+}
+.bar::-webkit-slider-thumb {
+	@apply appearance-none h-7 w-7 bg-slate-700 rounded-2xl cursor-pointer
+	border border-white;
+}
+.audio-control .bar::-webkit-slider-thumb {
+	@apply h-4 w-4;
+}
+
+.audio {
+	@apply flex items-center gap-2 justify-center;
+}
+
+.screen[screen="3"] iconify-icon {
+	@apply text-4xl;
+}
+
+.controls,
+.audio-control {
+	@apply flex justify-center items-center gap-3;
+}

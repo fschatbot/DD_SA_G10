@@ -1,0 +1,18 @@
+@import "./fontSheet.css";
+@import "./navbar.css";
+@import "./screen.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Basic CSS */
+*,
+*::before,
+*::after {
+	@apply transition-all duration-200 ease-in-out;
+}
+
+body,
+#root {
+	@apply max-h-screen max-w-[100vw] overflow-x-hidden;
+}
