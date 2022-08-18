@@ -5,7 +5,7 @@
 }
 
 .screen[screen="3"] .img div {
-	@apply w-64 h-56;
+	@apply w-full h-full;
 	filter: url(#round); /* This is the filter that makes the image round */
 }
 
@@ -17,7 +17,7 @@
 }
 
 .screen[screen="3"] .img {
-	@apply w-[17rem] h-60
+	@apply w-[22rem] h-[20rem] p-3
 	flex justify-center items-center;
 	filter: url(#round); /* This is the filter that makes the image round */
 }
