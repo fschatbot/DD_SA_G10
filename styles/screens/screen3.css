@@ -55,5 +55,18 @@
 
 .controls,
 .audio-control {
-	@apply flex justify-center items-center gap-3;
+	@apply flex justify-center items-center gap-3 text-4xl;
+}
+
+/* CSS for the titles */
+
+.titles span {
+	@apply px-2 py-4;
+	filter: blur(var(--blur, 0));
+	font-size: var(--size, 3rem);
+	color: rgba(255, 255, 255, var(--opac, 1));
+}
+
+.titles {
+	@apply w-[50rem] flex justify-between items-baseline;
 }
