@@ -42,7 +42,7 @@
 	border border-white;
 }
 .audio-control .bar::-webkit-slider-thumb {
-	@apply h-4 w-4;
+	@apply h-4 w-2;
 }
 
 .audio {
