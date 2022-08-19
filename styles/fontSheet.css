@@ -7,4 +7,5 @@
 		url("http://db.onlinewebfonts.com/t/2ae64ba97ed9bcd584dd5989332fe300.woff") format("woff") /* chrome firefox */,
 		url("http://db.onlinewebfonts.com/t/2ae64ba97ed9bcd584dd5989332fe300.ttf") format("truetype") /* chrome firefox opera Safari, Android, iOS 4.2+*/,
 		url("http://db.onlinewebfonts.com/t/2ae64ba97ed9bcd584dd5989332fe300.svg#CCBackBeatW00-Light") format("svg") /* iOS 4.1- */;
+	font-display: swap;
 }
