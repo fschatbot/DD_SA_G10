@@ -42,8 +42,6 @@ update_title_display();
 document.querySelector('[icon="ph:shuffle-light"]').addEventListener("click", function (event) {
 	event.preventDefault();
 	let curr = selections[2];
-	selections = selections.randomize();
-	selections.remove(curr);
-	selections.insert(2, curr);
+	selections = selections.remove(curr).randomize().insert(2, curr);
 	update_title_display();
 });
