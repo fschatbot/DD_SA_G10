@@ -55,7 +55,11 @@
 
 .controls,
 .audio-control {
-	@apply flex justify-center items-center gap-3 text-4xl;
+	@apply flex justify-center items-center gap-4 text-4xl;
+}
+
+.controls iconify-icon {
+	@apply cursor-pointer;
 }
 
 /* CSS for the titles */
