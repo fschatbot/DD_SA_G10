@@ -39,3 +39,9 @@ document.querySelectorAll(".titles span").forEach(function (el) {
 	});
 });
 update_title_display();
+
+document.querySelector('[icon="ph:shuffle-light"]').addEventListener("click", function (event) {
+	event.preventDefault();
+	selections = selections.randomize();
+	update_title_display();
+});

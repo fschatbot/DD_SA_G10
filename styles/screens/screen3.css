@@ -65,7 +65,8 @@
 /* CSS for the titles */
 
 .titles span {
-	@apply px-2 py-4;
+	@apply w-full h-full
+	flex justify-center cursor-pointer;
 	filter: blur(var(--blur, 0));
 	font-size: var(--size, 3rem);
 	color: rgba(255, 255, 255, var(--opac, 1));
