@@ -31,7 +31,6 @@ function update_title_display() {
 document.querySelectorAll(".titles span").forEach(function (el) {
 	el.addEventListener("click", function (event) {
 		event.preventDefault();
-		console.log(event.target.textContent);
 		while (selections[2] != el.textContent) {
 			selections = selections.rotate();
 		}
@@ -42,6 +41,9 @@ update_title_display();
 
 document.querySelector('[icon="ph:shuffle-light"]').addEventListener("click", function (event) {
 	event.preventDefault();
+	let curr = selections[2];
 	selections = selections.randomize();
+	selections.remove(curr);
+	selections.insert(2, curr);
 	update_title_display();
 });

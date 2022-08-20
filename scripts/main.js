@@ -41,7 +41,7 @@ document.querySelectorAll("nav li").forEach((elem) => {
 setScreen(Number(localStorage.getItem("activeScreen")) || 0, { instant: true });
 
 // Importing all the screen scripts
-let scripts = ["scripts/screen3.js", "scripts/utils.js"];
+let scripts = ["scripts/screen3.js"];
 scripts.forEach((script) => {
 	let scriptElem = document.createElement("script");
 	scriptElem.src = script;
