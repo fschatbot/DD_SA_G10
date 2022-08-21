@@ -2,76 +2,77 @@
 	@apply flex flex-col justify-center items-center gap-8
 	text-white font-bold text-2xl
 	md:pb-24; /* This is done to truely center the elements inside*/
-}
 
-.screen[screen="3"] .img div {
-	@apply w-full h-full;
-	filter: url(#round); /* This is the filter that makes the image round */
-}
+	.img {
+		@apply w-[22rem] h-[20rem] p-3
+		flex justify-center items-center;
+		filter: url(#round); /* This is the filter that makes the image round */
 
-.screen[screen="3"] .img div::before {
-	@apply content-[""] block
-	w-full h-full;
-	background: url("https://bennettfeely.com/clippy/pics/pittsburgh.jpg") center/cover;
-	clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
+		div {
+			@apply w-full h-full;
+			filter: url(#round); /* This is the filter that makes the image round */
 
-.screen[screen="3"] .img {
-	@apply w-[22rem] h-[20rem] p-3
-	flex justify-center items-center;
-	filter: url(#round); /* This is the filter that makes the image round */
-}
+			&::before {
+				@apply content-[""] block
+				w-full h-full;
+				background: url("https://bennettfeely.com/clippy/pics/pittsburgh.jpg") center/cover;
+				clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+			}
+		}
 
-.screen[screen="3"] .img::before {
-	@apply content-[""] absolute
-	w-full h-full
-	bg-gradient-to-br from-orange-500 to-rose-500;
-	box-shadow: inset 5px 5px 10px 0 rgba(255, 255, 255, 0.4);
-	clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-}
+		&::before {
+			@apply content-[""] absolute
+			w-full h-full
+			bg-gradient-to-br from-orange-500 to-rose-500;
+			box-shadow: inset 5px 5px 10px 0 rgba(255, 255, 255, 0.4);
+			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+		}
+	}
 
-/* Audio bar css */
-.bar {
-	@apply w-[50rem] bg-slate-500 rounded-md h-2 appearance-none;
-}
-.audio-control .bar {
-	@apply w-[20rem] h-1;
-}
-.bar::-webkit-slider-thumb {
-	@apply appearance-none h-7 w-7 bg-slate-700 rounded-2xl cursor-pointer
-	border border-white;
-}
-.audio-control .bar::-webkit-slider-thumb {
-	@apply h-4 w-2;
-}
+	/* Audio bar css */
+	.bar {
+		@apply w-[50rem] bg-slate-500 rounded-md h-2 appearance-none;
 
-.audio {
-	@apply flex items-center gap-2 justify-center;
-}
+		&::-webkit-slider-thumb {
+			@apply appearance-none h-7 w-7 bg-slate-700 rounded-2xl cursor-pointer
+			border border-white;
+		}
+	}
+	.audio-control .bar {
+		@apply w-[20rem] h-1;
+	}
 
-.screen[screen="3"] iconify-icon {
-	@apply text-4xl;
-}
+	.audio-control .bar::-webkit-slider-thumb {
+		@apply h-4 w-2;
+	}
 
-.controls,
-.audio-control {
-	@apply flex justify-center items-center gap-4 text-4xl;
-}
+	.audio {
+		@apply flex items-center gap-2 justify-center;
+	}
 
-.controls iconify-icon {
-	@apply cursor-pointer;
-}
+	iconify-icon {
+		@apply text-4xl;
+	}
 
-/* CSS for the titles */
+	.controls,
+	.audio-control {
+		@apply flex justify-center items-center gap-4 text-4xl;
+	}
 
-.titles span {
-	@apply w-full h-full
-	flex justify-center cursor-pointer;
-	filter: blur(var(--blur, 0));
-	font-size: var(--size, 3rem);
-	color: rgba(255, 255, 255, var(--opac, 1));
-}
+	.controls iconify-icon {
+		@apply cursor-pointer;
+	}
 
-.titles {
-	@apply w-[50rem] flex justify-between items-baseline;
+	/* CSS for the titles */
+	.titles {
+		@apply w-[50rem] flex justify-between items-baseline;
+
+		span {
+			@apply w-full h-full
+			flex justify-center cursor-pointer;
+			filter: blur(var(--blur, 0));
+			font-size: var(--size, 3rem);
+			color: rgba(255, 255, 255, var(--opac, 1));
+		}
+	}
 }

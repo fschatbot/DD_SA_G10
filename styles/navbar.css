@@ -7,24 +7,24 @@ nav ul {
 	@apply flex justify-around w-full h-full;
 }
 
-nav ul li.active {
-	@apply bg-slate-600;
-}
-
-nav ul li.active span {
-	@apply md:h-8;
-}
-
 nav ul li {
 	@apply cursor-pointer w-64 h-full hover:bg-slate-500
 	flex items-center justify-center flex-col
 	text-white text-3xl font-CCBackBeat tracking-wider;
-}
 
-nav ul li svg {
-	@apply h-8 w-8;
-}
+	svg {
+		@apply h-8 w-8;
+	}
 
-nav ul li span {
-	@apply text-xs md:text-lg text-gray-300 font-bold md:h-0 overflow-hidden mt-1;
+	span {
+		@apply text-xs md:text-lg text-gray-300 font-bold md:h-0 overflow-hidden mt-1;
+	}
+
+	&.active {
+		@apply bg-slate-600;
+
+		span {
+			@apply md:h-8;
+		}
+	}
 }
