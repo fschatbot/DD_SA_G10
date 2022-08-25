@@ -7,8 +7,13 @@
 		"webpack-cli": "^4.10.0"
 	},
 	"scripts": {
-		"build": "npm run build:CSS",
-		"build:JS": "webpack-cli build --entry ./script.js -o ./ --mode production",
-		"build:CSS": "npx tailwindcss -i styles/style.css -o style.min.css -m --postcss"
+		"build": "npm run build:CSS && npm run build:JS",
+		"build:CSS": "npx tailwindcss -i styles/style.css -o style.min.css -m --postcss",
+		"build:JS": "npx webpack-cli -c webpack.prod.js --progress",
+		"build:JS:DEV": "npx webpack-cli -c webpack.dev.js",
+		"test": "npx webpack-cli configtest webpack.prod.js"
+	},
+	"dependencies": {
+		"matter-js": "^0.18.0"
 	}
 }

@@ -1,7 +1,15 @@
 // If incase we ever use `require()` in the future, please change the `script.js` to `main.js` in the `index.html`.
 // Also implement the "build:JS" in `package.json` file.
-
 "use strict";
+
+// Importing all the screen scripts
+window.loaded = {
+	1: false,
+	3: false,
+};
+window.initFuncs = {};
+window.initiated = {};
+
 let activeScreen = 0;
 
 /*
@@ -24,6 +32,7 @@ function setScreen(screenIndex, options = { instant: false, log: false }) {
 	document.querySelector(`nav li[index="${screenIndex}"]`).classList.add("active");
 
 	// Declaring the active screen in the script
+	if (window.initFuncs[screenIndex] && !window.initiated[screenIndex]) initFuncs[screenIndex]();
 	activeScreen = screenIndex;
 	localStorage.setItem("activeScreen", activeScreen);
 	if (options.log) console.info(`Screen ${screenIndex} is now active!`);
@@ -38,12 +47,11 @@ document.querySelectorAll("nav li").forEach((elem) => {
 });
 
 // Scroll to the last active screen instantly on boot. If none, then make it first screen
-setScreen(Number(localStorage.getItem("activeScreen")) || 0, { instant: true });
-
-// Importing all the screen scripts
-let scripts = ["scripts/screen3.js"];
-scripts.forEach((script) => {
-	let scriptElem = document.createElement("script");
-	scriptElem.src = script;
-	document.body.appendChild(scriptElem);
-});
+// Make sure to run only when all the scripts have been loaded
+let interval = null;
+setInterval(() => {
+	if (Object.values(window.loaded).every((a) => a == true)) {
+		setScreen(Number(localStorage.getItem("activeScreen")) || 0, { instant: true });
+		clearInterval(interval);
+	}
+}, 500);
