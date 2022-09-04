@@ -16,6 +16,30 @@ const matter = {
 	canvas: null,
 	world: null,
 };
+const Balls = [];
+
+function addBall() {
+	let randForce = () => ({ x: (Math.randomNum(30, 20) / 100) * [-1, 1].random(), y: (Math.randomNum(30, 20) / 100) * [-1, 1].random() });
+	let { width, height } = canvasElem.getBoundingClientRect();
+
+	let config = {
+		force: randForce(),
+		label: "ball",
+		friction: 0,
+		frictionAir: 0,
+		frictionStatic: 0,
+		inertia: Infinity,
+		restitution: 1,
+	};
+
+	var ball = Bodies.polygon(width / 2, height / 2, 30, 40, config);
+	Composite.add(matter.engine.world, [ball]);
+	Balls.push(ball);
+
+	if (Balls.length >= 5) {
+		document.querySelector("[addBall]").style.display = "none";
+	}
+}
 
 function init_screen1() {
 	window.initiated[1] = true;
@@ -37,22 +61,9 @@ function init_screen1() {
 	});
 	matter.canvas = matter.render.canvas;
 
-	// Spawn in a dummy ball
-	let config = {
-		label: "ball",
-		friction: 0,
-		frictionAir: 0,
-		frictionStatic: 0,
-		inertia: Infinity,
-		restitution: 1,
-	};
-	let randForce = () => ({ x: Math.random() - 0.5, y: Math.random() - 0.5 });
-	var ball1 = Bodies.polygon(width / 2, height / 2, 30, 40, { ...config, force: randForce() });
-	var ball2 = Bodies.circle(width / 4, height / 2, 40, { ...config, force: randForce() });
-	var ball3 = Bodies.circle((width * 3) / 4, height / 2, 40, { ...config, force: randForce() });
-
 	Events.on(matter.engine, "afterCollision", function (event) {
-		[ball1, ball2, ball3].forEach((ball) => {
+		console.log(1);
+		Balls.forEach((ball) => {
 			if (ball.speed != 0) {
 				let speedMultiplier = 11.241098900509593 / ball.speed; // 11.241098900509593 == initial (starting) ball speed
 				Body.setVelocity(ball, { x: ball.velocity.x * speedMultiplier, y: ball.velocity.y * speedMultiplier });
@@ -61,7 +72,7 @@ function init_screen1() {
 	});
 
 	// add all of the bodies to the world
-	Composite.add(matter.engine.world, [ball1, ball2, ball3]);
+	(1).times(addBall);
 
 	// add mouse control
 	var mouse = Mouse.create(matter.render.canvas),
@@ -87,6 +98,8 @@ function init_screen1() {
 	// Keep the things straight
 	setSize();
 	updateWalls();
+
+	document.querySelector("[addBall]").addEventListener("click", addBall);
 }
 
 function updateWalls() {
@@ -117,6 +130,7 @@ function setSize() {
 	matter.render.canvas.height = height;
 
 	updateWalls();
+	// Remove any ball which has a y/x value below 0 or more than width/height
 }
 
 window.addEventListener("resize", () => setTimeout(setSize, 1000));

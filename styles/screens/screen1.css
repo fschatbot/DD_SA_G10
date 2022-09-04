@@ -1,3 +1,20 @@
-#screen1_ctx {
-	@apply w-full h-full;
+.screen[screen="1"] {
+	@apply relative;
+
+	#screen1_ctx {
+		@apply w-full h-full;
+	}
+
+	.controlPannel {
+		@apply absolute text-white z-50 top-[20%] left-1/2 -translate-x-1/2 flex justify-center items-center flex-col gap-5
+		w-full;
+	}
+
+	.title {
+		@apply text-3xl md:text-7xl font-bold;
+	}
+
+	button {
+		@apply text-yellow-400 text-xl;
+	}
 }
