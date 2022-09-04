@@ -1,7 +1,7 @@
 nav {
 	@apply w-screen md:w-auto md:rounded-full overflow-hidden bg-slate-700 h-20
 	fixed bottom-0 md:bottom-4 left-1/2 -translate-x-1/2 mx-auto
-	flex justify-center items-center;
+	flex flex-row justify-center items-center;
 
 	ul {
 		@apply flex justify-around w-full h-full;
