@@ -9,11 +9,13 @@
 	"scripts": {
 		"build": "npm run build:CSS && npm run build:JS",
 		"build:CSS": "npx tailwindcss -i styles/style.css -o style.min.css -m --postcss",
+		"build:CSS:DEV": "npx tailwindcss -i styles/style.css -o style.min.css -w --postcss",
 		"build:JS": "npx webpack-cli -c webpack.prod.js --progress",
 		"build:JS:DEV": "npx webpack-cli -c webpack.dev.js",
 		"test": "npx webpack-cli configtest webpack.prod.js"
 	},
 	"dependencies": {
-		"matter-js": "^0.18.0"
+		"matter-js": "^0.18.0",
+		"matter-wrap": "^0.2.0"
 	}
 }
