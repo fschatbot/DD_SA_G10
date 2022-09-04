@@ -9,7 +9,7 @@ let walls = {
 	right: null,
 };
 
-var variables = {
+var matter = {
 	engine: null,
 	render: null,
 	runner: null,
@@ -21,21 +21,21 @@ function init_screen1() {
 	window.initiated[1] = true;
 
 	// create an engine
-	variables.engine = Engine.create();
-	variables.world = variables.engine.world;
-	variables.engine.gravity.y = 0;
+	matter.engine = Engine.create();
+	matter.world = matter.engine.world;
+	matter.engine.gravity.y = 0;
 
 	// create a renderer
 	let { width, height } = canvasElem.getBoundingClientRect();
-	variables.render = Render.create({
+	matter.render = Render.create({
 		canvas: canvasElem,
-		engine: variables.engine,
+		engine: matter.engine,
 		options: {
 			hasBounds: true,
 			wireframes: false,
 		},
 	});
-	variables.canvas = variables.render.canvas;
+	matter.canvas = matter.render.canvas;
 
 	// Spawn in a dummy ball
 	let config = {
@@ -50,7 +50,7 @@ function init_screen1() {
 	var ball2 = Bodies.circle(width / 4, height / 2, 40, { ...config, force: { y: 0.2 } });
 	var ball3 = Bodies.circle((width * 3) / 4, height / 2, 40, { ...config, force: { x: 0.2, y: 0.1 } });
 
-	Events.on(variables.engine, "afterCollision", function (event) {
+	Events.on(matter.engine, "afterCollision", function (event) {
 		if (ball.speed != 0) {
 			let speedMultiplier = 11.241098900509593 / ball.speed; // 11.241098900509593 == initial (starting) ball speed
 			Body.setVelocity(ball, { x: ball.velocity.x * speedMultiplier, y: ball.velocity.y * speedMultiplier });
@@ -58,11 +58,11 @@ function init_screen1() {
 	});
 
 	// add all of the bodies to the world
-	Composite.add(variables.engine.world, [ball1, ball2, ball3]);
+	Composite.add(matter.engine.world, [ball1, ball2, ball3]);
 
 	// add mouse control
-	var mouse = Mouse.create(variables.render.canvas),
-		mouseConstraint = MouseConstraint.create(variables.engine, {
+	var mouse = Mouse.create(matter.render.canvas),
+		mouseConstraint = MouseConstraint.create(matter.engine, {
 			mouse: mouse,
 			constraint: {
 				stiffness: 0.2,
@@ -72,13 +72,13 @@ function init_screen1() {
 			},
 		});
 
-	Composite.add(variables.engine.world, mouseConstraint);
-	variables.render.mouse = mouse;
+	Composite.add(matter.engine.world, mouseConstraint);
+	matter.render.mouse = mouse;
 
 	// Run the render and the engine
-	Render.run(variables.render);
-	variables.runner = Runner.create();
-	Runner.run(variables.runner, variables.engine);
+	Render.run(matter.render);
+	matter.runner = Runner.create();
+	Runner.run(matter.runner, matter.engine);
 	Resolver._restingThresh = 0.001;
 
 	// Keep the things straight
@@ -90,7 +90,7 @@ function updateWalls() {
 	// This function respawns the walls
 	Object.values(walls)
 		.filter((wall) => wall)
-		.forEach((wall) => Composite.remove(variables.engine.world, wall));
+		.forEach((wall) => Composite.remove(matter.engine.world, wall));
 	let { width, height } = canvasElem.getBoundingClientRect();
 	var bounceRate = 1;
 	var wallWidth = 10;
@@ -99,19 +99,19 @@ function updateWalls() {
 	walls.left = Bodies.rectangle(0, height / 2, wallWidth, height, { isStatic: true, restitution: bounceRate });
 	walls.right = Bodies.rectangle(width, height / 2, wallWidth, height, { isStatic: true, restitution: bounceRate });
 
-	Composite.add(variables.engine.world, Object.values(walls));
+	Composite.add(matter.engine.world, Object.values(walls));
 }
 
 function setSize() {
 	// This function is ran to resize the canvas and the elements when the screen changes
 	let container = canvasElem.parentElement;
 	let { width, height } = { width: container.offsetWidth, height: container.offsetHeight };
-	variables.render.bounds.max.x = width;
-	variables.render.bounds.max.y = height;
-	variables.render.options.width = width;
-	variables.render.options.height = height;
-	variables.render.canvas.width = width;
-	variables.render.canvas.height = height;
+	matter.render.bounds.max.x = width;
+	matter.render.bounds.max.y = height;
+	matter.render.options.width = width;
+	matter.render.options.height = height;
+	matter.render.canvas.width = width;
+	matter.render.canvas.height = height;
 
 	updateWalls();
 }
