@@ -19,7 +19,9 @@
 		<!-- Screens -->
 		<div class="screens">
 			<div class="screen" screen="0">{1}</div>
-			<div class="screen" screen="1" id="viewport"></div>
+			<div class="screen" screen="1">
+				<canvas id="screen1_ctx"></canvas>
+			</div>
 			<div class="screen" screen="2">{3}</div>
 			<div class="screen" screen="3">
 				<div class="img">
@@ -83,15 +85,7 @@
 					<span class="group-hover:h-8">Bubble</span>
 				</li>
 				<li index="1" class="group">
-					<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M6 7C4.89543 7 4 6.10457 4 5C4 3.89543 4.89543 3 6 3C7.10457 3 8 3.89543 8 5C8 6.10457 7.10457 7 6 7Z"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round" />
-						<path d="M21 15.5C18 14.5 15.5 15 13 20C12.5 17 11 12.5 9.5 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-					</svg>
+					<iconify-icon icon="iconoir:bounce-left"></iconify-icon>
 					<span class="group-hover:h-8">Bounce</span>
 				</li>
 				<li index="2" class="group">
@@ -104,40 +98,11 @@
 					<span class="group-hover:h-8">Juggle</span>
 				</li>
 				<li index="3" class="group">
-					<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M14.5714 15.0036L15.4286 16.8486C15.4286 16.8486 19.2857 17.6678 19.2857 19.6162C19.2857 21 17.5714 21 17.5714 21H13L10.75 19.75"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round" />
-						<path
-							d="M9.42864 15.0036L8.5715 16.8486C8.5715 16.8486 4.71436 17.6678 4.71436 19.6162C4.71436 21 6.42864 21 6.42864 21H8.50007L10.7501 19.75L13.5001 18"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round" />
-						<path
-							d="M3 15.9261C3 15.9261 5.14286 15.4649 6.42857 15.0036C7.71429 8.54595 11.5714 9.00721 12 9.00721C12.4286 9.00721 16.2857 8.54595 17.5714 15.0036C18.8571 15.4649 21 15.9261 21 15.9261"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round" />
-						<path
-							d="M12 7C13.1046 7 14 6.10457 14 5C14 3.89543 13.1046 3 12 3C10.8954 3 10 3.89543 10 5C10 6.10457 10.8954 7 12 7Z"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round" />
-					</svg>
+					<iconify-icon icon="iconoir:yoga"></iconify-icon>
 					<span class="group-hover:h-8">Breathing</span>
 				</li>
 				<li index="4" class="group">
-					<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-						<path
-							d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
-						<path d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
-					</svg>
+					<iconify-icon icon="ph:info"></iconify-icon>
 					<span class="group-hover:h-8">Info</span>
 				</li>
 			</ul>
