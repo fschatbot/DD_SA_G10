@@ -1,15 +1,15 @@
-var { Engine, Render, Runner, Bodies, Composite, Resolver, MouseConstraint, Mouse, Events } = require("matter-js");
+const { Engine, Render, Runner, Bodies, Composite, Resolver, MouseConstraint, Mouse, Events } = require("matter-js");
 
 var canvasElem = document.querySelector("#screen1_ctx");
 
-let walls = {
+const walls = {
 	up: null,
 	down: null,
 	left: null,
 	right: null,
 };
 
-var matter = {
+const matter = {
 	engine: null,
 	render: null,
 	runner: null,
@@ -51,10 +51,12 @@ function init_screen1() {
 	var ball3 = Bodies.circle((width * 3) / 4, height / 2, 40, { ...config, force: { x: 0.2, y: 0.1 } });
 
 	Events.on(matter.engine, "afterCollision", function (event) {
-		if (ball.speed != 0) {
-			let speedMultiplier = 11.241098900509593 / ball.speed; // 11.241098900509593 == initial (starting) ball speed
-			Body.setVelocity(ball, { x: ball.velocity.x * speedMultiplier, y: ball.velocity.y * speedMultiplier });
-		}
+		[ball1, ball2, ball3].forEach((ball) => {
+			if (ball.speed != 0) {
+				let speedMultiplier = 11.241098900509593 / ball.speed; // 11.241098900509593 == initial (starting) ball speed
+				Body.setVelocity(ball, { x: ball.velocity.x * speedMultiplier, y: ball.velocity.y * speedMultiplier });
+			}
+		});
 	});
 
 	// add all of the bodies to the world
