@@ -39,7 +39,6 @@ function init_screen1() {
 
 	// Spawn in a dummy ball
 	let config = {
-		force: { x: 0.1 },
 		label: "ball",
 		friction: 0,
 		frictionAir: 0,
@@ -47,9 +46,9 @@ function init_screen1() {
 		inertia: Infinity,
 		restitution: 1,
 	};
-	var ball1 = Bodies.polygon(width / 2, height / 2, 30, 40, { ...config });
-	var ball2 = Bodies.circle(width / 4, height / 2, 40, config);
-	var ball3 = Bodies.circle((width * 3) / 4, height / 2, 40, config);
+	var ball1 = Bodies.polygon(width / 2, height / 2, 30, 40, { ...config, force: { x: 0.2 } });
+	var ball2 = Bodies.circle(width / 4, height / 2, 40, { ...config, force: { y: 0.2 } });
+	var ball3 = Bodies.circle((width * 3) / 4, height / 2, 40, { ...config, force: { x: 0.2, y: 0.1 } });
 
 	Events.on(variables.engine, "afterCollision", function (event) {
 		if (ball.speed != 0) {
