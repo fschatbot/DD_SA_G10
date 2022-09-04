@@ -5,6 +5,7 @@
 // Importing all the screen scripts
 window.loaded = {
 	1: false,
+	2: false,
 	3: false,
 };
 window.initFuncs = {};
