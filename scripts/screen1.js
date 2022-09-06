@@ -1,4 +1,5 @@
 const { Engine, Render, Runner, Bodies, Composite, Resolver, MouseConstraint, Mouse, Events } = require("matter-js");
+const { addCanvasWalls, removeCanvasWalls } = require("./utils");
 
 var canvasElem = document.querySelector("#screen1_ctx");
 
@@ -104,18 +105,8 @@ function init_screen1() {
 
 function updateWalls() {
 	// This function respawns the walls
-	Object.values(walls)
-		.filter((wall) => wall)
-		.forEach((wall) => Composite.remove(matter.engine.world, wall));
-	let { width, height } = canvasElem.getBoundingClientRect();
-	var bounceRate = 1;
-	var wallWidth = 10;
-	walls.down = Bodies.rectangle(width / 2, height, width, wallWidth, { isStatic: true, restitution: bounceRate });
-	walls.up = Bodies.rectangle(width / 2, 0, width, wallWidth, { isStatic: true, restitution: bounceRate });
-	walls.left = Bodies.rectangle(0, height / 2, wallWidth, height, { isStatic: true, restitution: bounceRate });
-	walls.right = Bodies.rectangle(width, height / 2, wallWidth, height, { isStatic: true, restitution: bounceRate });
-
-	Composite.add(matter.engine.world, Object.values(walls));
+	removeCanvasWalls(matter.engine.world);
+	addCanvasWalls(matter.engine.world, canvasElem);
 }
 
 function setSize() {
