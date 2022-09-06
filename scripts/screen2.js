@@ -1,5 +1,5 @@
 const { Engine, Render, Runner, Bodies, Composite, Resolver, MouseConstraint, Mouse, Events, Body } = require("matter-js");
-const { addCanvasWalls, removeCanvasWalls } = require("./utils");
+const { resizeCanvas } = require("./utils");
 
 var canvasElem = document.querySelector("#screen2_ctx");
 
@@ -65,7 +65,7 @@ function init_screen2() {
 
 	Events.on(mouseConstraint, "mousedown", (event) => {
 		if (event.source.body == ball) {
-			// Removing the ball from the contrainst to avoid unknown glitches
+			// Removing the ball from the contrainst to avoid getting stuck in mid-air
 			event.source.constraint.bodyB = null;
 			event.source.constraint.body = null;
 
@@ -85,32 +85,10 @@ function init_screen2() {
 	Runner.run(matter.runner, matter.engine);
 
 	// Keep the things straight
-	setSize();
-	updateWalls();
+	resizeCanvas(matter, canvasElem);
 }
 
-function updateWalls() {
-	// This function respawns the walls
-	removeCanvasWalls(matter.engine.world);
-	addCanvasWalls(matter.engine.world, canvasElem);
-}
-
-function setSize() {
-	// This function is ran to resize the canvas and the elements when the screen changes
-	let container = canvasElem.parentElement;
-	let { width, height } = { width: container.offsetWidth, height: container.offsetHeight };
-	matter.render.bounds.max.x = width;
-	matter.render.bounds.max.y = height;
-	matter.render.options.width = width;
-	matter.render.options.height = height;
-	matter.render.canvas.width = width;
-	matter.render.canvas.height = height;
-
-	updateWalls();
-	// Remove any ball which has a y/x value below 0 or more than width/height
-}
-
-window.addEventListener("resize", () => setTimeout(setSize, 1000));
+window.addEventListener("resize", () => setTimeout(resizeCanvas, 1000, matter, canvasElem));
 
 window.loaded[2] = true;
 window.initFuncs[2] = init_screen2;

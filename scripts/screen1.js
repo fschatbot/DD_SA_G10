@@ -1,5 +1,5 @@
 const { Engine, Render, Runner, Bodies, Composite, Resolver, MouseConstraint, Mouse, Events } = require("matter-js");
-const { addCanvasWalls, removeCanvasWalls } = require("./utils");
+const { resizeCanvas } = require("./utils");
 
 var canvasElem = document.querySelector("#screen1_ctx");
 
@@ -97,34 +97,12 @@ function init_screen1() {
 	Resolver._restingThresh = 0.001;
 
 	// Keep the things straight
-	setSize();
-	updateWalls();
+	resizeCanvas(matter, canvasElem);
 
 	document.querySelector("[addBall]").addEventListener("click", addBall);
 }
 
-function updateWalls() {
-	// This function respawns the walls
-	removeCanvasWalls(matter.engine.world);
-	addCanvasWalls(matter.engine.world, canvasElem);
-}
-
-function setSize() {
-	// This function is ran to resize the canvas and the elements when the screen changes
-	let container = canvasElem.parentElement;
-	let { width, height } = { width: container.offsetWidth, height: container.offsetHeight };
-	matter.render.bounds.max.x = width;
-	matter.render.bounds.max.y = height;
-	matter.render.options.width = width;
-	matter.render.options.height = height;
-	matter.render.canvas.width = width;
-	matter.render.canvas.height = height;
-
-	updateWalls();
-	// Remove any ball which has a y/x value below 0 or more than width/height
-}
-
-window.addEventListener("resize", () => setTimeout(setSize, 1000));
+window.addEventListener("resize", () => setTimeout(resizeCanvas, 1000, matter, canvasElem));
 
 window.loaded[1] = true;
 window.initFuncs[1] = init_screen1;
