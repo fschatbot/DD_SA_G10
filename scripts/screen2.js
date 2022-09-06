@@ -55,26 +55,24 @@ function init_screen2() {
 		mouseConstraint = MouseConstraint.create(matter.engine, {
 			mouse: mouse,
 			constraint: {
+				damping: 0,
+				stiffness: 0, // This makes the mouse unable to grab the object
 				render: {
 					visible: false,
 				},
 			},
 		});
 
-	let fire = false;
 	Events.on(mouseConstraint, "mousedown", (event) => {
 		if (event.source.body == ball) {
-			fire = true;
-		}
-	});
+			// Removing the ball from the contrainst to avoid unknown glitches
+			event.source.constraint.bodyB = null;
+			event.source.constraint.body = null;
 
-	Events.on(mouseConstraint, "mouseup", (event) => {
-		if (fire) {
-			console.log("Something");
+			// Launching the ball
 			let xOffset = Math.randomNum(-3, 3);
 			let yLaunch = 15;
 			Body.setVelocity(ball, { x: ball.velocity.x + xOffset, y: -yLaunch });
-			fire = false;
 		}
 	});
 
