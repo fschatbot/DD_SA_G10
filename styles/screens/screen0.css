@@ -1,0 +1,5 @@
+.screen[screen="0"] {
+	#screen0_ctx {
+		@apply w-full h-full;
+	}
+}

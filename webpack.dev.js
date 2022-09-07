@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
 	mode: "development",
-	entry: ["./scripts/main.js", "./scripts/screen1.js", "./scripts/screen2.js", "./scripts/screen3.js"],
+	entry: ["./scripts/main.js", "./scripts/screen0.js", "./scripts/screen1.js", "./scripts/screen2.js", "./scripts/screen3.js"],
 	output: {
 		path: path.resolve(__dirname, "dist"),
 	},

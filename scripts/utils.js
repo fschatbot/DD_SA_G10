@@ -47,7 +47,7 @@ export function updateWalls({ engine }, canvas) {
 }
 
 // Resizes the canvas back to fit the screen and updates the walls & balls[todo] accordingly
-export function resizeCanvas({ render, engine }, canvas) {
+export function resizeCanvas({ render, engine }, canvas, UpdateWalls = true) {
 	// This function is ran to resize the canvas and the elements when the screen changes
 	const container = canvas.parentElement;
 	const { width, height } = { width: container.offsetWidth, height: container.offsetHeight };
@@ -58,7 +58,7 @@ export function resizeCanvas({ render, engine }, canvas) {
 	render.canvas.width = width;
 	render.canvas.height = height;
 
-	updateWalls({ engine }, canvas);
+	if (UpdateWalls) updateWalls({ engine }, canvas);
 
 	// Remove any ball which has a y/x value below 0 or more than width/height
 }
