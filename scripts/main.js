@@ -20,13 +20,15 @@ let activeScreen = 0;
  * @param: {object} options - Change how the scrolling is done.
  * @return: {void}
  */
-function setScreen(screenIndex, options = { instant: false, log: false }) {
+function setScreen(screenIndex, options) {
+	options = { instant: false, log: false, ...options };
 	// Managing the scroll
 	let elem = document.querySelector(`.screen[screen="${screenIndex}"]`);
 	if (options.instant === true) {
 		elem.scrollIntoView({ behavior: "instant", block: "start" });
 	} else {
-		elem.scrollIntoView({ behavior: "smooth", block: "start" }); // TODO: Change the duration of the scroll (https://stackoverflow.com/q/15935318/13703806)
+		// TODO: Change the duration of the scroll (https://stackoverflow.com/q/15935318/13703806)
+		elem.scrollIntoView({ behavior: "smooth", block: "start" });
 	}
 
 	// Managing the navigation classes
