@@ -42,6 +42,10 @@ function addBall() {
 	}
 }
 
+function toggle() {
+	matter.runner.enabled = !matter.runner.enabled;
+}
+
 function init_screen1() {
 	window.initiated[1] = true;
 
@@ -100,6 +104,7 @@ function init_screen1() {
 	resizeCanvas(matter, canvasElem);
 
 	document.querySelector("[addBall]").addEventListener("click", addBall);
+	document.querySelector("[pause]").addEventListener("click", toggle);
 }
 
 window.addEventListener("resize", () => setTimeout(resizeCanvas, 1000, matter, canvasElem));
