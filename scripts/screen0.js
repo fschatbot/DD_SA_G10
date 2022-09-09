@@ -13,6 +13,10 @@ const matter = {
 
 let bubbles = [];
 let remover;
+let sideWalls = {
+	left: null,
+	right: null,
+};
 let score = 0;
 
 function init_screen0() {
@@ -81,7 +85,7 @@ function init_screen0() {
 
 	// Keep the things straight
 	resizeCanvas(matter, canvasElem, false);
-	makeTopWall();
+	makeWalls();
 
 	// Start the spawning
 	setInterval(spawnBubbles, BubbleConfig.spawnRate);
@@ -109,23 +113,36 @@ function spawnBubbles() {
 		},
 	});
 	Composite.add(matter.engine.world, ball);
-	Body.setVelocity(ball, { ...ball.velocity, y: -BubbleConfig.speed });
+	Body.setVelocity(ball, { x: Math.randomFloat(1, -1), y: -BubbleConfig.speed });
 	bubbles.push(ball);
 }
 
-function makeTopWall() {
+function makeWalls() {
 	// Removing any top walls
 	if (remover) World.remove(matter.engine.world, remover);
 	// Creating the top wall
-	let { width } = canvasElem.getBoundingClientRect();
-	remover = Bodies.rectangle(width / 2, -BubbleConfig.radius * 2, width, 10, { isStatic: true, visible: false });
+	let { width: w, height: h } = canvasElem.getBoundingClientRect();
+	remover = Bodies.rectangle(w / 2, -BubbleConfig.radius * 2, w, 10, { isStatic: true, visible: false });
 	Composite.add(matter.engine.world, remover);
+
+	// Making the side walls
+	// removing the walls
+	Object.values(sideWalls).forEach((wall) => {
+		if (wall) World.remove(matter.engine.world, wall);
+	});
+	var thick = 10;
+	var cy = h / 2;
+	var t = thick / 2;
+	var tt = thick * 2;
+	sideWalls.right = Bodies.rectangle(w + t, cy, thick, h + tt, { isStatic: true, visible: false });
+	sideWalls.left = Bodies.rectangle(-t, cy, thick, h + tt, { isStatic: true, visible: false });
+	Composite.add(matter.engine.world, Object.values(sideWalls));
 }
 
 window.addEventListener("resize", () => {
 	setTimeout(() => {
 		resizeCanvas(matter, canvasElem, false);
-		makeTopWall();
+		makeWalls();
 	}, 1000);
 });
 
