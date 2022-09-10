@@ -3,13 +3,6 @@ const { resizeCanvas } = require("./utils");
 
 var canvasElem = document.querySelector("#screen2_ctx");
 
-const walls = {
-	up: null,
-	down: null,
-	left: null,
-	right: null,
-};
-
 const matter = {
 	engine: null,
 	render: null,
@@ -18,27 +11,12 @@ const matter = {
 	world: null,
 };
 
-function init_screen2() {
-	window.initiated[2] = true;
+let ball;
 
-	// create an engine
-	matter.engine = Engine.create();
-	matter.world = matter.engine.world;
-
-	// create a renderer
-	matter.render = Render.create({
-		canvas: canvasElem,
-		engine: matter.engine,
-		options: {
-			hasBounds: true,
-			wireframes: false,
-		},
-	});
-	matter.canvas = matter.render.canvas;
-
+function addBall() {
 	// Create a ball
 	let { width, height } = canvasElem.getBoundingClientRect();
-	let ball = Bodies.circle(width / 2, height / 2, 40, {
+	ball = Bodies.circle(width / 2, height / 2, 40, {
 		label: "ball",
 		friction: 0,
 		frictionAir: 0,
@@ -48,9 +26,11 @@ function init_screen2() {
 		density: 1,
 	});
 	Composite.add(matter.engine.world, ball);
+}
 
+function addMouse() {
 	// add mouse control
-	var mouse = Mouse.create(matter.render.canvas),
+	let mouse = Mouse.create(matter.render.canvas),
 		mouseConstraint = MouseConstraint.create(matter.engine, {
 			mouse: mouse,
 			constraint: {
@@ -77,6 +57,28 @@ function init_screen2() {
 
 	Composite.add(matter.engine.world, mouseConstraint);
 	matter.render.mouse = mouse;
+}
+
+function init_screen2() {
+	window.initiated[2] = true;
+
+	// create an engine
+	matter.engine = Engine.create();
+	matter.world = matter.engine.world;
+
+	// create a renderer
+	matter.render = Render.create({
+		canvas: canvasElem,
+		engine: matter.engine,
+		options: {
+			hasBounds: true,
+			wireframes: false,
+		},
+	});
+	matter.canvas = matter.render.canvas;
+
+	addBall();
+	addMouse();
 
 	// Run the render and the engine
 	Render.run(matter.render);
