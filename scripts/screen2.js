@@ -24,10 +24,8 @@ function init_screen2() {
 	// create an engine
 	matter.engine = Engine.create();
 	matter.world = matter.engine.world;
-	// matter.engine.gravity.y = 1;
 
 	// create a renderer
-	let { width, height } = canvasElem.getBoundingClientRect();
 	matter.render = Render.create({
 		canvas: canvasElem,
 		engine: matter.engine,
@@ -39,6 +37,7 @@ function init_screen2() {
 	matter.canvas = matter.render.canvas;
 
 	// Create a ball
+	let { width, height } = canvasElem.getBoundingClientRect();
 	let ball = Bodies.circle(width / 2, height / 2, 40, {
 		label: "ball",
 		friction: 0,

@@ -62,5 +62,3 @@ export function resizeCanvas({ render, engine }, canvas, UpdateWalls = true) {
 
 	// Remove any ball which has a y/x value below 0 or more than width/height
 }
-
-window.addEventListener("resize", () => setTimeout(setSize, 1000));

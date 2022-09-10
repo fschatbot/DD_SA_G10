@@ -77,7 +77,7 @@ function init_screen1() {
 	});
 
 	// add all of the bodies to the world
-	(1).times(addBall);
+	addBall();
 
 	// add mouse control
 	var mouse = Mouse.create(matter.render.canvas),
