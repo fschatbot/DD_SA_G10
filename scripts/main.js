@@ -17,7 +17,9 @@ let activeScreen = 0;
 /*
  * @description: This function is used to change the screen.
  * @param: {number} screenNumber - The screen number to be changed.
- * @param: {object} options - Change how the scrolling is done.
+ * @param: {object} options - Config to customize the behaviour of the function
+ * @param: {boolean} [options.instant=false] - Should the scrolling be instant
+ * @param: {boolean} [options.log=false] - Wether to send a console message of the change
  * @return: {void}
  */
 function setScreen(screenIndex, options) {
@@ -36,7 +38,7 @@ function setScreen(screenIndex, options) {
 	document.querySelector(`nav li[index="${screenIndex}"]`).classList.add("active");
 
 	// Declaring the active screen in the script
-	if (window.initFuncs[screenIndex] && !window.initiated[screenIndex]) initFuncs[screenIndex]();
+	if (window.initFuncs[screenIndex] && !window.initiated[screenIndex]) window.initFuncs[screenIndex]();
 	activeScreen = screenIndex;
 	localStorage.setItem("activeScreen", activeScreen);
 	if (options.log) console.info(`Screen ${screenIndex} is now active!`);
@@ -52,8 +54,7 @@ document.querySelectorAll("nav li").forEach((elem) => {
 
 // Scroll to the last active screen instantly on boot. If none, then make it first screen
 // Make sure to run only when all the scripts have been loaded
-let interval = null;
-setInterval(() => {
+let interval = setInterval(() => {
 	if (Object.values(window.loaded).every((a) => a == true)) {
 		setScreen(Number(localStorage.getItem("activeScreen")) || 0, { instant: true });
 		clearInterval(interval);
