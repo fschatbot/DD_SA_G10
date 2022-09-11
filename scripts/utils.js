@@ -39,18 +39,11 @@ export function removeCanvasWalls(world) {
 	return (walls && !!World.remove(world, walls)) || false;
 }
 
-// Removes and adds all the walls back to the screen
-export function updateWalls({ engine }, canvas) {
-	// This function respawns the walls
-	removeCanvasWalls(engine.world);
-	addCanvasWalls(engine.world, canvas);
-}
-
 // Resizes the canvas back to fit the screen and updates the walls & balls[todo] accordingly
 export function resizeCanvas({ render, engine }, canvas, UpdateWalls = true) {
-	// This function is ran to resize the canvas and the elements when the screen changes
+	// Resize the canvas and the render
 	const container = canvas.parentElement;
-	const { width, height } = { width: container.offsetWidth, height: container.offsetHeight };
+	const { width, height } = container.getBoundingClientRect();
 	render.bounds.max.x = width;
 	render.bounds.max.y = height;
 	render.options.width = width;
@@ -58,7 +51,8 @@ export function resizeCanvas({ render, engine }, canvas, UpdateWalls = true) {
 	render.canvas.width = width;
 	render.canvas.height = height;
 
-	if (UpdateWalls) updateWalls({ engine }, canvas);
+	if (UpdateWalls) addCanvasWalls(engine.world, canvas);
 
-	// Remove any ball which has a y/x value below 0 or more than width/height
+	// Remove any balls outside the viewing range
+	// removeOutsideBalls();
 }
