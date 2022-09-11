@@ -49,7 +49,7 @@ function addMouse() {
 			event.source.constraint.body = null;
 
 			// Launching the ball
-			let xOffset = Math.randomNum(-3, 3);
+			let xOffset = Math.randomFloat(-3, 3);
 			let yLaunch = 15;
 			Body.setVelocity(ball, { x: ball.velocity.x + xOffset, y: -yLaunch });
 		}
