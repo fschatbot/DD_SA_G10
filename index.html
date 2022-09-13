@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DD SA</title>
+
+		<!-- Stylesheets -->
+		<!-- <link href="//db.onlinewebfonts.com/c/2ae64ba97ed9bcd584dd5989332fe300?family=CCBackBeatW00-Light" rel="stylesheet" type="text/css" /> -->
+		<link href="style.min.css" rel="stylesheet" />
+
+		<!-- Scripts -->
+		<script src="https://fschatbot.github.io/Script/Dummy.min.js"></script>
+		<script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+		<script src="dist/main.js" defer></script>
+	</head>
+	<body>
+		<!-- Screens -->
+		<div class="screens">
+			<div class="screen" screen="0">
+				<canvas id="screen0_ctx"></canvas>
+			</div>
+			<div class="screen" screen="1">
+				<canvas id="screen1_ctx"></canvas>
+				<div class="controlPannel">
+					<h1 class="title">Rumble In the Jungle</h1>
+					<button addBall>Add a ball</button>
+					<button pause>Pause</button>
+				</div>
+			</div>
+			<div class="screen" screen="2">
+				<canvas id="screen2_ctx"></canvas>
+			</div>
+			<div class="screen" screen="3">
+				<div class="img">
+					<div></div>
+				</div>
+				<div class="titles">
+					<span style="--blur: 2px; --size: 2rem; --opac: 0.5">Rain</span>
+					<span style="--blur: 1.5px; --size: 2.5rem; --opac: 0.75">River</span>
+					<span>Nature</span>
+					<span style="--blur: 1.5px; --size: 2.5rem; --opac: 0.75">Night</span>
+					<span style="--blur: 2px; --size: 2rem; --opac: 0.5">Piano</span>
+				</div>
+				<div class="controls">
+					<iconify-icon icon="ph:shuffle-light"></iconify-icon>
+					<iconify-icon icon="ph:skip-back-light"></iconify-icon>
+					<iconify-icon icon="fluent:skip-back-10-20-regular"></iconify-icon>
+					<iconify-icon icon="ph:play-light"></iconify-icon>
+					<iconify-icon icon="fluent:skip-forward-10-20-regular"></iconify-icon>
+					<iconify-icon icon="ph:skip-forward-light"></iconify-icon>
+					<iconify-icon icon="ph:repeat-light"></iconify-icon>
+				</div>
+				<div class="audio">
+					<input type="range" class="bar" value="0" max="100" min="0" />
+					<span>00:00 / 02:00</span>
+				</div>
+				<div class="audio-control">
+					<iconify-icon icon="akar-icons:sound-off"></iconify-icon>
+					<input type="range" class="bar" value="45" max="50" min="0" />
+					<iconify-icon icon="akar-icons:sound-on"></iconify-icon>
+				</div>
+				<!-- This for rounded corners (Thx: https://dev.to/afif/css-shapes-with-rounded-corners-56h) -->
+				<svg style="visibility: hidden; position: absolute" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+					<defs>
+						<filter id="round">
+							<feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+							<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+							<feComposite in="SourceGraphic" in2="goo" operator="atop" />
+						</filter>
+					</defs>
+				</svg>
+			</div>
+			<div class="screen" screen="4">This site was made to calm the user through various activities.</div>
+		</div>
+		<!-- Navigation Bar -->
+		<nav>
+			<ul>
+				<li index="0" class="group">
+					<svg fill="currentColor" stroke="currentColor" viewBox="0 0 363.188 363.188" enableBackground="new 0 0 363.188 363.188">
+						<g>
+							<path
+								d="m111.667,132.311c-61.574,0-111.667,50.093-111.667,111.666s50.093,111.667 111.667,111.667 111.667-50.094 111.667-111.667-50.094-111.666-111.667-111.666zm0,208.333c-53.303,0-96.667-43.364-96.667-96.667 0-53.302 43.364-96.666 96.667-96.666s96.667,43.364 96.667,96.666c-0.001,53.303-43.365,96.667-96.667,96.667z" />
+							<path d="m111.667,173.977c-4.142,0-7.5,3.357-7.5,7.5s3.358,7.5 7.5,7.5c30.327,0 55,24.673 55,55 0,4.143 3.358,7.5 7.5,7.5s7.5-3.357 7.5-7.5c0-38.598-31.402-70-70-70z" />
+							<path
+								d="m298.333,69.835c-35.761,0-64.855,29.094-64.855,64.855 0,35.761 29.094,64.854 64.855,64.854s64.855-29.094 64.855-64.854c-5.68434e-14-35.761-29.093-64.855-64.855-64.855zm0,114.71c-27.49,0-49.855-22.364-49.855-49.854s22.365-49.855 49.855-49.855 49.855,22.365 49.855,49.855-22.364,49.854-49.855,49.854z" />
+							<path
+								d="m302.012,157.925c-14.84,0-26.913-12.073-26.913-26.913 0-4.143-3.358-7.5-7.5-7.5s-7.5,3.357-7.5,7.5c0,23.111 18.802,41.913 41.913,41.913 4.142,0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5z" />
+							<path
+								d="m123.358,96.568c24.544,0 44.512-19.968 44.512-44.512s-19.968-44.512-44.512-44.512-44.512,19.968-44.512,44.512 19.968,44.512 44.512,44.512zm0-74.024c16.273,3.55271e-15 29.512,13.239 29.512,29.512s-13.239,29.512-29.512,29.512-29.512-13.239-29.512-29.512 13.239-29.512 29.512-29.512z" />
+						</g>
+					</svg>
+					<span class="group-hover:h-8">Bubble</span>
+				</li>
+				<li index="1" class="group">
+					<iconify-icon icon="iconoir:bounce-left"></iconify-icon>
+					<span class="group-hover:h-8">Bounce</span>
+				</li>
+				<li index="2" class="group">
+					<svg id="eNRjItgy7cx1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" shapeRendering="geometricPrecision" textRendering="geometricPrecision">
+						<ellipse rx="3.5" ry="3.5" transform="translate(10 8)" fill="currentColor" fillRule="evenodd" stroke="#d2dbed" />
+						<rect width="0.930445" height="5.009174" rx="0.47" ry="0.47" transform="matrix(1 0 0 1.297619 7.824694 13.23197)" fill="#d2dbed" strokeWidth="0" strokeLinecap="round" />
+						<rect width="0.921496" height="3.101187" rx="0.46" ry="0.46" transform="translate(9.574694 14.06167)" fill="#d2dbed" strokeWidth="0" strokeLinecap="round" />
+						<rect width="0.850612" height="4.651781" rx="0.43" ry="0.43" transform="translate(11.324694 13.286373)" fill="#d2dbed" strokeWidth="0" strokeLinecap="round" />
+					</svg>
+					<span class="group-hover:h-8">Juggle</span>
+				</li>
+				<li index="3" class="group">
+					<iconify-icon icon="iconoir:yoga"></iconify-icon>
+					<span class="group-hover:h-8">Breathing</span>
+				</li>
+				<li index="4" class="group">
+					<iconify-icon icon="ph:info"></iconify-icon>
+					<span class="group-hover:h-8">Info</span>
+				</li>
+			</ul>
+		</nav>
+	</body>
+</html>
