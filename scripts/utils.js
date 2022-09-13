@@ -12,7 +12,7 @@ const PHYSICS = {
 export function addCanvasWalls(world, canva, thick = 10) {
 	let walls = findCanvasWalls(world); // checks if a walls composite exists
 
-	// If none found, create a walls composite & add it to the world:
+	// If none found, create a walls composite & add it to the world
 	walls || World.addComposite(world, (walls = Composite.create(GROUP)));
 
 	let { width: w, height: h } = canva.getBoundingClientRect(),
@@ -26,7 +26,7 @@ export function addCanvasWalls(world, canva, thick = 10) {
 		west = Bodies.rectangle(-t, cy, thick, h + tt, PHYSICS);
 
 	// Adds 4 invisible immovable wall bodies to the walls composite
-	// but not before erasing any previous 1s 1st:
+	// but not before erasing any previous 1st
 	return Composite.add(Composite.clear(walls), [north, east, south, west]);
 }
 
